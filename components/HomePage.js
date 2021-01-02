@@ -8,11 +8,22 @@ class HomePage extends Component {
         this.state = {
             name: '',
         };
+        this.MAX_VAR_LENGTH = 40;
     }
-    validateName = (name) => {
-        if (name === '') {
-            alert('Name cannot be blank');
+    processName = () => {
+        if (this.state.name === '') {
+            alert('Name Cannot be Blank');
+            return;
         }
+        if(this.state.name.length > this.MAX_VAR_LENGTH){
+            alert('Maximum length of this variable is '+ this.MAX_VAR_LENGTH);
+            return;
+        }
+        this.props.navigation.navigate('HelloPage', {  
+            userName: this.state.name,  
+            otherParam: '101',  
+        });  
+        this.setState({name : ''})
     }
     render() {
         return (
@@ -30,10 +41,7 @@ class HomePage extends Component {
                     />
                     <TouchableOpacity style={styles.button}
                         onPress={
-                            () => this.props.navigation.navigate('HelloPage', {  
-                                userName: this.state.name,  
-                                otherParam: '101',  
-                            })  
+                            () => this.processName()
                         }>
                         <Text style={styles.buttonText}>
                             SUBMIT

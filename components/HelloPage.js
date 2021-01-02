@@ -7,32 +7,29 @@ class HelloPage extends Component {
         super(props);
         this.state = {
             name: props.route.params.userName,
-            otherParam: props.route.params.otherParam,  
+            otherParam: props.route.params.otherParam,
         };
     }
-    
-    render() { 
-        const user_name = this.state.name; 
-        const other_param = this.state.otherParam;
+
+    render() {
         return (
             <View style={styles.container}>
                 <Image
                     style={{ flex: 0, height: 150, width: 350 }}
                     source={require('../resources/react-native.png')}
                 />
-                <Text style={{ marginTop: 16,fontSize: 20,}}>  
-                    This is Profile Screen and we receive value from Home Screen  
-                </Text>  
-                <Text style={styles.textStyle}>User Name: {JSON.stringify(user_name)}</Text>  
-                <Text style={styles.textStyle}>Other Param: {JSON.stringify(other_param)}</Text> 
+                <View style={styles.helloContainer}>
+                    <Text style={styles.greetingStyle}>Hello </Text>
+                    <Text style={styles.textStyle}>{this.state.name}</Text>
+                </View>
                 <TouchableOpacity style={styles.button}
-                        onPress={
-                            () => this.props.navigation.goBack()
-                        }>
-                        <Text style={styles.buttonText}>
-                            BACK
+                    onPress={
+                        () => this.props.navigation.goBack()
+                    }>
+                    <Text style={styles.buttonText}>
+                        BACK
                     </Text>
-                    </TouchableOpacity>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -49,13 +46,26 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 50,
     },
+    helloContainer: {
+        flexDirection: 'row',
+        flex: 1,
+        paddingTop: 100
+    },
+    greetingStyle: {
+        fontSize: 40,
+        fontFamily: 'Open Sans',
+        color: '#4FC3F7',
+        borderColor: 'white',
+        fontStyle: 'italic',
+    },
     textStyle: {
-        margin: 15,
-        width: 350,
-        height: 40,
-        borderColor: 'black',
-        borderWidth: 1,
-        backgroundColor: 'white',
+        fontSize: 40,
+        fontFamily: 'Open Sans',
+        color: 'white',
+        borderColor: 'white',
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        textTransform: 'capitalize'
     },
     button: {
         paddingLeft: 200,
