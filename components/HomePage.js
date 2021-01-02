@@ -17,6 +17,7 @@ class HomePage extends Component {
         }
         if(this.state.name.length > this.MAX_VAR_LENGTH){
             alert('Maximum length of this variable is '+ this.MAX_VAR_LENGTH);
+            this.setState({name : ''})
             return;
         }
         this.props.navigation.navigate('HelloPage', {  
