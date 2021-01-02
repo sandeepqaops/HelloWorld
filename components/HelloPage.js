@@ -53,14 +53,12 @@ const styles = StyleSheet.create({
     },
     greetingStyle: {
         fontSize: 40,
-        fontFamily: 'Open Sans',
         color: '#4FC3F7',
         borderColor: 'white',
         fontStyle: 'italic',
     },
     textStyle: {
         fontSize: 40,
-        fontFamily: 'Open Sans',
         color: 'white',
         borderColor: 'white',
         fontStyle: 'italic',
