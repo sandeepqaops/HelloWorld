@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import testID from 'react-native-testid';
 
 class HelloPage extends Component {
     constructor(props) {
@@ -17,16 +18,17 @@ class HelloPage extends Component {
                 <Image
                     style={{ flex: 0, height: 150, width: 350 }}
                     source={require('../resources/react-native.png')}
+                    {...testID('hello-image')}
                 />
                 <View style={styles.helloContainer}>
-                    <Text style={styles.greetingStyle}>Hello </Text>
-                    <Text style={styles.textStyle}>{this.state.name}</Text>
+                    <Text style={styles.greetingStyle} {...testID('hello-greeting')}>Hello </Text>
+                    <Text style={styles.textStyle} {...testID('hello-name')}>{this.state.name}</Text>
                 </View>
-                <TouchableOpacity style={styles.button}
+                <TouchableOpacity style={styles.button} {...testID('hello-back-button')}
                     onPress={
                         () => this.props.navigation.goBack()
                     }>
-                    <Text style={styles.buttonText}>
+                    <Text style={styles.buttonText} {...testID('hello-back-button-text')}>
                         BACK
                     </Text>
                 </TouchableOpacity>

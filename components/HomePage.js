@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import testID from 'react-native-testid';
 
 class HomePage extends Component {
     constructor(props) {
@@ -32,6 +33,7 @@ class HomePage extends Component {
                 <Image
                     style={{ flex: 0, height: 150, width: 350 }}
                     source={require('../resources/react-native.png')}
+                    {...testID('home-image')}
                 />
                 <View style={styles.textContainer}>
                     <TextInput style={styles.textInput}
@@ -39,12 +41,13 @@ class HomePage extends Component {
                         onChangeText={name => this.setState({ name })}
                         placeholder={'Enter Your Name'}
                         placeholderTextColor="#CFD8DC"
+                        {...testID('home-name-field')}
                     />
-                    <TouchableOpacity style={styles.button}
+                    <TouchableOpacity style={styles.button} {...testID('home-submit-button')}
                         onPress={
                             () => this.processName()
                         }>
-                        <Text style={styles.buttonText}>
+                        <Text style={styles.buttonText} {...testID('home-submit-button-text')}>
                             SUBMIT
                     </Text>
                     </TouchableOpacity>
