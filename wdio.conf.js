@@ -51,7 +51,6 @@ exports.config = {
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         maxInstances: 1,
-        //
         browserName: '',
         acceptInsecureCerts: false,
         browserName: '',
@@ -100,14 +99,14 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 120000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
     connectionRetryTimeout: 120000,
     //
     // Default request retries count
-    connectionRetryCount: 3,
+    connectionRetryCount: 10,
     //
     // Test runner services
     // Services take over a specific job you don't want to take care of. They enhance
@@ -136,9 +135,19 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec'],
+    reporters: [
+        ['mochawesome',{
+            outputDir: './__tests__/e2e/test-results',
+            outputFileFormat: function(opts) { 
+                return `results-${opts.cid}.json`
+            }
+        }]
+    ],
 
-
+    mochawesomeOpts: {
+        includeScreenshots:true,
+        screenshotUseRelativePath:true
+    },
     
     //
     // Options to be passed to Mocha.

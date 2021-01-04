@@ -4,12 +4,15 @@ class HomePage  extends Page {
 
     get image() { return $('~home-image') }
     get nameField() { return $('~home-name-field') }
-    get submitButton() { return $('~home-submit-button') }
-    get submitButtonText() { return $('~home-submit-button-text') }
+    get submitButton() {
+        const selectorType = driver.isAndroid ? 'android' : 'ios'
+        const selector = driver.isAndroid ? 'description("home-submit-button-text")' : '~home-submit-button'
+        return $(`${selectorType}=${selector}`)
+    }
 
     inputName(name){
         this.nameField.setValue(name);
-        browser.hideKeyboard();
+        driver.hideKeyboard();
         this.submitButton.click();
     }
 

@@ -16,6 +16,7 @@
     "@wdio/appium-service": "^6.10.11",
     "@wdio/cli": "^6.10.11",
     "@wdio/sync": "^6.10.11",
+    "mochawesome-report-generator": "^5.1.0",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-gesture-handler": "^1.9.0",
@@ -40,7 +41,8 @@
     "jest": "25.5.4",
     "metro-react-native-babel-preset": "0.59.0",
     "react-test-renderer": "16.13.1",
-    "wdio-chromedriver-service": "^6.0.4"
+    "wdio-chromedriver-service": "^6.0.4",
+    "wdio-mochawesome-reporter": "^4.0.0"
   },
   "jest": {
     "preset": "react-native"
