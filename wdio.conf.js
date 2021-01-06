@@ -144,11 +144,6 @@ exports.config = {
         }]
     ],
 
-    mochawesomeOpts: {
-        includeScreenshots:true,
-        screenshotUseRelativePath:true
-    },
-    
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/

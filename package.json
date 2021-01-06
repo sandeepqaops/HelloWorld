@@ -7,7 +7,9 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "e2e-test": "npx wdio ./wdio.conf.js",
+    "generate-e2e-test-report": "marge ./__tests__/e2e/test-results/results-0-0.json --reportTitle 'Test Results Report' --reportFilename report --reportDir __tests__/e2e/test-results/"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
@@ -16,7 +18,7 @@
     "@wdio/appium-service": "^6.10.11",
     "@wdio/cli": "^6.10.11",
     "@wdio/sync": "^6.10.11",
-    "mochawesome-report-generator": "^5.1.0",
+    "mochawesome-report-generator": "3.1.5",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-gesture-handler": "^1.9.0",
@@ -42,7 +44,7 @@
     "metro-react-native-babel-preset": "0.59.0",
     "react-test-renderer": "16.13.1",
     "wdio-chromedriver-service": "^6.0.4",
-    "wdio-mochawesome-reporter": "^4.0.0"
+    "wdio-mochawesome-reporter": "3.2.0"
   },
   "jest": {
     "preset": "react-native"
