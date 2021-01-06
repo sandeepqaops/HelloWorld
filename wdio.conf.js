@@ -46,7 +46,7 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-    
+
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
@@ -54,12 +54,13 @@ exports.config = {
         browserName: '',
         acceptInsecureCerts: false,
         browserName: '',
-        appiumVersion: '1.15.0',
-        platformName: 'Android',
-        platformVersion: '10',
-        deviceName: 'emulator-5554',
-        app: './android/app/build/outputs/apk/debug/app-debug.apk',
-        automationName: 'UiAutomator2'
+        appiumVersion: '1.20.0',
+        platformName: 'iOS',
+        udid: 'B0A273C2-B7A2-41F2-B289-9A26FBEE160E',
+        platformVersion: '14.3',
+        deviceName: 'TestiPhone11',
+        app: './os/build/HelloWorld/Build/Products/Debug-iphonesimulator/HelloWorld.app',
+        automationName: 'XCUITest',
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
@@ -114,7 +115,7 @@ exports.config = {
     // commands. Instead, they hook themselves up into the test process.
     services: ['appium'],
     port: 4723,
-    
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
@@ -136,9 +137,9 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
     reporters: [
-        ['mochawesome',{
+        ['mochawesome', {
             outputDir: './__tests__/e2e/test-results',
-            outputFileFormat: function(opts) { 
+            outputFileFormat: function (opts) {
                 return `results-${opts.cid}.json`
             }
         }]

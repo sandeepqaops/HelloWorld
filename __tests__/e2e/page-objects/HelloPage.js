@@ -7,8 +7,8 @@ class HelloPage  extends Page {
     get name() { return $('~hello-name') }
     get backButton() {
         const selectorType = driver.isAndroid ? 'android' : 'ios'
-        const selector = driver.isAndroid ? 'description("hello-back-button-text")' : '~hello-back-button'
-        return $(`${selectorType}=${selector}`)
+        const selector = driver.isAndroid ? `${selectorType}=description("hello-back-button-text")` : `-${selectorType} predicate string:name == "hello-back-button"`
+        return $(`${selector}`)
     }
 
 }
