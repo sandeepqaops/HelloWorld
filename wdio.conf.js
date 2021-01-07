@@ -55,12 +55,11 @@ exports.config = {
         acceptInsecureCerts: false,
         browserName: '',
         appiumVersion: '1.20.0',
-        platformName: 'iOS',
-        udid: 'B0A273C2-B7A2-41F2-B289-9A26FBEE160E',
-        platformVersion: '14.3',
-        deviceName: 'TestiPhone11',
-        app: './os/build/HelloWorld/Build/Products/Debug-iphonesimulator/HelloWorld.app',
-        automationName: 'XCUITest',
+        platformName: 'Android',
+        platformVersion: '10',
+        deviceName: 'emulator-5554',
+        app: './android/app/build/outputs/apk/debug/app-debug.apk',
+        automationName: 'UiAutomator2',
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs

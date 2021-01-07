@@ -4,11 +4,7 @@ class HomePage extends Page {
 
     get image() { return $('~home-image') }
     get nameField() { return $('~home-name-field') }
-    get submitButton() {
-        const selectorType = driver.isAndroid ? 'android' : 'ios'
-        const selector = driver.isAndroid ? `${selectorType}=description("home-submit-button-text")` : `-${selectorType} predicate string:name == "home-submit-button"`
-        return $(`${selector}`)
-    }
+    get submitButton() { return this.getSelector(androidSelector='~home-submit-button-text', iosSelector='~home-submit-button')}
 
     inputName(name) {
         this.nameField.setValue(name);

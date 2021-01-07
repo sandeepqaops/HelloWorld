@@ -1,9 +1,13 @@
 export default class Page {
-    constructor() {
-        this.title = 'My Page'
-    }
+    constructor() { }
 
-    open(path) {
-        browser.url(path)
+    getSelector(androidSelector, iosSelector) {
+        let selector;
+        if (driver.isAndroid) {
+            selector=`${androidSelector}`;
+        } else {
+            selector=`${iosSelector}`;
+        }
+        return $(`${selector}`)
     }
 }
