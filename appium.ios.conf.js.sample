@@ -1,8 +1,7 @@
-exports.config = {
+const capabilities = {
     maxInstances: 1,
     browserName: '',
     acceptInsecureCerts: false,
-    browserName: '',
     appiumVersion: '1.20.0',
     platformName: 'iOS',
     udid: 'B0A273C2-B7A2-41F2-B289-9A26FBEE160E',
@@ -11,3 +10,4 @@ exports.config = {
     app: './os/build/HelloWorld/Build/Products/Debug-iphonesimulator/HelloWorld.app',
     automationName: 'XCUITest',
 };
+exports.capabilities = capabilities;
