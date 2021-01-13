@@ -1,7 +1,20 @@
 version: 2.1
-orbs:
-  node: circleci/node@3.0.0
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    steps:
+      - checkout
+      - run: npm --version
+  test:
+    steps:
+      - run: echo "this is the test job"
+
+# Orchestrate our job run sequence
 workflows:
-  node-tests:
+  build_and_test:
     jobs:
-      - node/test
+      - build
+      - test:
+          requires:
+            - build
