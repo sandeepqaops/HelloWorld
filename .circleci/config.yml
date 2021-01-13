@@ -6,16 +6,12 @@ jobs:
     macos:  # indicate that we are using the macOS executor
       xcode: 11.7.0
     
-    working_directory: ~/
-
     steps:
       - checkout
       - run: npm --version
   test:
     macos:  # indicate that we are using the macOS executor
       xcode: 11.7.0
-
-    working_directory: ~/
 
     steps:
       - run: echo "this is the test job"
