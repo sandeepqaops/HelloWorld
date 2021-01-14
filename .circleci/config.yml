@@ -6,7 +6,7 @@ jobs:
     macos:  # indicate that we are using the macOS executor
       xcode: 11.7.0
     environment:
-      IOS_VERSION: 13.7
+      IOS_VERSION: 12.4
       DEVICE_NAME: TestiPhoneX
     steps:
       - checkout
@@ -14,9 +14,9 @@ jobs:
       - run: xcrun simctl list
       - run: |
           gem install xcode-install
-          xcversion simulators --install='iOS 13.7'
+          xcversion simulators --install='iOS 12.4'
       - run: |
-          xcrun simctl create $DEVICE_NAME com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-13-7 > deviceid.txt 
+          xcrun simctl create $DEVICE_NAME com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-12-4 > deviceid.txt 
           DEVICEUUID=`cat deviceid.txt`          
           echo $DEVICEUUID
           xcrun simctl boot $DEVICEUUID &
