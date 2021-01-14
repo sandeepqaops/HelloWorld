@@ -11,10 +11,8 @@ jobs:
     steps:
       - checkout
       - run: npm install react-native-cli
-      - run: xcrun simctl list
       - run: |
           gem install xcode-install
-          xcversion simulators --install='iOS 12.4'
       - run: |
           xcrun simctl create $DEVICE_NAME com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-12-4 > deviceid.txt 
           DEVICEUUID=`cat deviceid.txt`          
