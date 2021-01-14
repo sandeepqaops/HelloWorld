@@ -24,12 +24,6 @@ jobs:
           cat appium.ios.conf.js
       - run: npm install --save-dev
       - run: |
-          ./node_modules/.bin/appium --log-timestamp --log-no-colors --allow-insecure chromedriver_autodownload > appium.log &
-      - run: |
-          until $(curl --output /dev/null --silent --head --fail http://127.0.0.1:4723/wd/hub/sessions); do
-            sleep 5
-          done
-      - run: |
           npm start --reset-cache &> metro.log &
       - run: |
           react-native run-ios --simulator=$DEVICE_NAME
