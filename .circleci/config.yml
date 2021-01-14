@@ -5,15 +5,36 @@ jobs:
   build:
     macos:  # indicate that we are using the macOS executor
       xcode: 11.7.0
-    
+    environment:
+      IOS_VERSION: 11.4
+      DEVICE_NAME: TestiPhoneX
     steps:
       - checkout
-      - run: npm --version
-      - run: echo $ANDROID_SDK_HOME
-      - run: echo $ANDROID_HOME
+      - run: npm install react-native-cli
       - run: xcrun simctl list
+      - run: |
+          gem install xcode-install
+          xcversion simulators --install='iOS 11.4'
+      - run: |
+          xcrun simctl create $DEVICE_NAME com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-11-4 > deviceid.txt 
+          DEVICEUUID=`cat deviceid.txt`          
+          echo $DEVICEUUID
+          xcrun simctl boot $DEVICEUUID &
+          sed -i -e "s/{IOS-DEVICE-UDID}/$DEVICEUUID/g" appium.ios.conf.js
+          sed -i -e "s/{IOS-DEVICE-PLATFORM-VERSION}/$IOS_VERSION/g" appium.ios.conf.js
+          sed -i -e "s/{IOS-DEVICE-NAME}/$DEVICE_NAME/g" appium.ios.conf.js
+          cat appium.ios.conf.js
       - run: npm install --save-dev
-            
+      - run: |
+          ./node_modules/.bin/appium --log-timestamp --log-no-colors --allow-insecure chromedriver_autodownload > appium.log &
+      - run: |
+          until $(curl --output /dev/null --silent --head --fail http://127.0.0.1:4723/wd/hub/sessions); do
+            sleep 5
+          done
+      - run: |
+          npm start --reset-cache &> metro.log &
+      - run: |
+          react-native run-ios --simulator=$DEVICE_NAME  
   test:
     macos:  # indicate that we are using the macOS executor
       xcode: 11.7.0
