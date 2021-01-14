@@ -6,7 +6,7 @@ jobs:
     macos:  # indicate that we are using the macOS executor
       xcode: 11.7.0
     environment:
-      IOS_VERSION: 11.4
+      IOS_VERSION: 13.7
       DEVICE_NAME: TestiPhoneX
     steps:
       - checkout
@@ -14,9 +14,9 @@ jobs:
       - run: xcrun simctl list
       - run: |
           gem install xcode-install
-          xcversion simulators --install='iOS 11.4'
+          xcversion simulators --install='iOS 13.7'
       - run: |
-          xcrun simctl create $DEVICE_NAME com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-11-4 > deviceid.txt 
+          xcrun simctl create $DEVICE_NAME com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-13-7 > deviceid.txt 
           DEVICEUUID=`cat deviceid.txt`          
           echo $DEVICEUUID
           xcrun simctl boot $DEVICEUUID &
@@ -34,19 +34,15 @@ jobs:
       - run: |
           npm start --reset-cache &> metro.log &
       - run: |
-          react-native run-ios --simulator=$DEVICE_NAME  
-  test:
-    macos:  # indicate that we are using the macOS executor
-      xcode: 11.7.0
-
-    steps:
-      - run: echo "this is the test job"
+          react-native run-ios --simulator=$DEVICE_NAME
+          sleep 30
+          BUILT_APP=`find ~/Library/Developer/Xcode/DerivedData -name HelloWorld.app | grep Build/Products/Debug-iphonesimulator/HelloWorld.app`
+          mkdir -p ios/build/HelloWorld/Build/Products/Debug-iphonesimulator
+          cp -R $BUILT_APP ios/build/HelloWorld/Build/Products/Debug-iphonesimulator
+          npm run e2e-test:ios -- Sanity
 
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
     jobs:
       - build
-      - test:
-          requires:
-            - build
