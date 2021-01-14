@@ -8,7 +8,19 @@ jobs:
     
     steps:
       - checkout
-      - run: npm --version
+      - run: 
+        - name: Version Checks
+        - run: |
+            npm --version
+            echo $ANDROID_SDK_HOME
+            echo $ANDROID_HOME
+            xcrun simctl list
+      - run:
+        - name: Install Depedencies
+        - run: |
+            npm install --save-dev
+
+
   test:
     macos:  # indicate that we are using the macOS executor
       xcode: 11.7.0
