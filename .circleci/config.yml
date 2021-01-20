@@ -10,7 +10,7 @@ jobs:
       DEVICE_NAME: TestiPhoneX
     steps:
       - checkout
-      - run: npm install react-native-cli
+      - run: npm install -g react-native-cli
       - run: |
           gem install xcode-install
       - run: |
