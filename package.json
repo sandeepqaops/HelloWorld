@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "e2e-test": "npx wdio ./wdio.conf.js",
+    "e2e-test:ios": "./run_e2e_test.sh iOS",
+    "e2e-test:android": "./run_e2e_test.sh Android",
     "generate-e2e-test-report": "marge ./__tests__/e2e/test-results/results-0-0.json --reportTitle 'Test Results Report' --reportFilename report --reportDir __tests__/e2e/test-results/"
   },
   "dependencies": {

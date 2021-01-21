@@ -7,7 +7,7 @@ var expect = require('chai').expect;
 describe('Sample App Test', () => {
 
   beforeEach(() => {
-    browser.reset();
+    driver.reset();
     HomePage.image.waitForDisplayed();
   });
 

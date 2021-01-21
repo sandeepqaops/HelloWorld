@@ -1,0 +1,59 @@
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    macos:  # indicate that we are using the macOS executor
+      xcode: 11.7.0
+    environment:
+      IOS_VERSION: 12.4
+      DEVICE_NAME: TestiPhoneX
+    steps:
+      - checkout
+      - run: npm install -g react-native-cli
+      - run: |
+          gem install xcode-install
+      - run: |
+          xcrun simctl create $DEVICE_NAME com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-12-4 > deviceid.txt 
+          DEVICEUUID=`cat deviceid.txt`          
+          echo $DEVICEUUID
+          xcrun simctl boot $DEVICEUUID &
+          sed -i -e "s/{IOS-DEVICE-UDID}/$DEVICEUUID/g" appium.ios.conf.js
+          sed -i -e "s/{IOS-DEVICE-PLATFORM-VERSION}/$IOS_VERSION/g" appium.ios.conf.js
+          sed -i -e "s/{IOS-DEVICE-NAME}/$DEVICE_NAME/g" appium.ios.conf.js
+          cat appium.ios.conf.js
+      - run: |
+          rm -rf node_modules
+          npm cache clean --force
+          rm -rf package-lock.json
+      - run: gem install cocoapods
+      - run: npm install --save-dev
+      - run: npm audit fix
+      - run: npm install --save-dev chai
+      - run: |
+          cd ios && pod install --repo-update && cd ..
+      - run: |
+          npm start --reset-cache &> metro.log &
+          sleep 30
+      - run: |
+          react-native run-ios --simulator=$DEVICE_NAME &> build.log
+          sleep 30
+          BUILT_APP=`find ~/Library/Developer/Xcode/DerivedData -name HelloWorld.app | grep Build/Products/Debug-iphonesimulator/HelloWorld.app`
+          mkdir -p ios/build/HelloWorld/Build/Products/Debug-iphonesimulator
+          cp -R $BUILT_APP ios/build/HelloWorld/Build/Products/Debug-iphonesimulator
+          npm run e2e-test:ios -- Sanity &> test-output.log
+      - store_artifacts:
+          path: metro.log
+          destination: metro.log
+      - store_artifacts:
+          path: build.log
+          destination: build.log
+      - store_artifacts:
+          path: test-output.log
+          destination: test-output.log
+
+# Orchestrate our job run sequence
+workflows:
+  build_and_test:
+    jobs:
+      - build
