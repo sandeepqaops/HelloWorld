@@ -22,6 +22,10 @@ jobs:
           sed -i -e "s/{IOS-DEVICE-PLATFORM-VERSION}/$IOS_VERSION/g" appium.ios.conf.js
           sed -i -e "s/{IOS-DEVICE-NAME}/$DEVICE_NAME/g" appium.ios.conf.js
           cat appium.ios.conf.js
+      - run: |
+          rm -rf node_modules
+          npm cache clean --force
+          rm -rf package-lock.json
       - run: gem install cocoapods
       - run: npm install --save-dev
       - run: npm audit fix
