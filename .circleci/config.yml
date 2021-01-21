@@ -29,10 +29,12 @@ jobs:
       - run: gem install cocoapods
       - run: npm install --save-dev
       - run: npm audit fix
+      - run: npm install --save-dev chai
       - run: |
           cd ios && pod install --repo-update && cd ..
       - run: |
           npm start --reset-cache &> metro.log &
+          sleep 30
       - run: |
           react-native run-ios --simulator=$DEVICE_NAME &> build.log
           sleep 30
