@@ -41,7 +41,7 @@ jobs:
           BUILT_APP=`find ~/Library/Developer/Xcode/DerivedData -name HelloWorld.app | grep Build/Products/Debug-iphonesimulator/HelloWorld.app`
           mkdir -p ios/build/HelloWorld/Build/Products/Debug-iphonesimulator
           cp -R $BUILT_APP ios/build/HelloWorld/Build/Products/Debug-iphonesimulator
-          npm run e2e-test:ios -- Sanity &> test-output.log
+          npm run e2e-test:ios -- Sanity &> test-execution-console.log
       - store_artifacts:
           path: metro.log
           destination: metro.log
@@ -49,8 +49,11 @@ jobs:
           path: build.log
           destination: build.log
       - store_artifacts:
-          path: test-output.log
-          destination: test-output.log
+          path: test-execution-console.log
+          destination: test-execution-console.log
+      - store_artifacts:
+          path: __tests__/e2e/test-results
+          destination: test-results
 
 # Orchestrate our job run sequence
 workflows:
