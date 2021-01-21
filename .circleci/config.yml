@@ -23,9 +23,10 @@ jobs:
           sed -i -e "s/{IOS-DEVICE-NAME}/$DEVICE_NAME/g" appium.ios.conf.js
           cat appium.ios.conf.js
       - run: gem install cocoapods
+      - run: npm install --save-dev
+      - run: npm audit fix
       - run: |
           cd ios && pod install --repo-update && cd ..
-      - run: npm install --save-dev
       - run: |
           npm start --reset-cache &> metro.log &
       - run: |
