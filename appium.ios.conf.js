@@ -7,7 +7,7 @@ const capabilities = {
     udid: '{IOS-DEVICE-UDID}',
     platformVersion: '{IOS-DEVICE-PLATFORM-VERSION}',
     deviceName: '{IOS-DEVICE-NAME}',
-    app: './os/build/HelloWorld/Build/Products/Debug-iphonesimulator/HelloWorld.app',
+    app: './ios/build/HelloWorld/Build/Products/Debug-iphonesimulator/HelloWorld.app',
     automationName: 'XCUITest',
 };
 exports.capabilities = capabilities;

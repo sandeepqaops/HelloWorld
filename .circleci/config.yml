@@ -34,12 +34,21 @@ jobs:
       - run: |
           npm start --reset-cache &> metro.log &
       - run: |
-          react-native run-ios --simulator=$DEVICE_NAME
+          react-native run-ios --simulator=$DEVICE_NAME &> build.log
           sleep 30
           BUILT_APP=`find ~/Library/Developer/Xcode/DerivedData -name HelloWorld.app | grep Build/Products/Debug-iphonesimulator/HelloWorld.app`
           mkdir -p ios/build/HelloWorld/Build/Products/Debug-iphonesimulator
           cp -R $BUILT_APP ios/build/HelloWorld/Build/Products/Debug-iphonesimulator
-          npm run e2e-test:ios -- Sanity
+          npm run e2e-test:ios -- Sanity &> test-output.log
+      - store_artifacts:
+          path: metro.log
+          destination: metro.log
+      - store_artifacts:
+          path: build.log
+          destination: build.log
+      - store_artifacts:
+          path: test-output.log
+          destination: test-output.log
 
 # Orchestrate our job run sequence
 workflows:
