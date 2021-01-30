@@ -62,11 +62,12 @@ jobs:
       - run: npm install -g react-native-cli
       - run: |
           brew install --cask homebrew/cask-versions/adoptopenjdk8
+          brew install gradle
           brew install android-sdk
           brew install android-platform-tools
       - run: |
-          /usr/libexec/java_home
-          ls -l /Library/Java/JavaVirtualMachines/
+          export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+          export PATH=$JAVA_HOME/bin:$PATH
           java -version
           echo "y" | sdkmanager --install 'system-images;android-28;google_apis;x86_64'
           echo "no" | avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
