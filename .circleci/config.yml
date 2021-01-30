@@ -61,7 +61,6 @@ jobs:
       - checkout
       - run: npm install -g react-native-cli
       - run: |
-          brew tap adoptopenjdk/openjdk
           brew install adoptopenjdk8
           java -version
           brew install gradle
