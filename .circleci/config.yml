@@ -63,6 +63,7 @@ jobs:
       - run: |
           brew install gradle
           brew install android-sdk
+          brew install android-platform-tools
           export GRADLE_HOME=/usr/local/opt/gradle
           export ANDROID_HOME=/usr/local/opt/android-sdk
           export PATH=$GRADLE_HOME/bin:$PATH
@@ -72,13 +73,13 @@ jobs:
           adb --version
           exit 1
       - run: |
-          echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-28;google_apis;x86_64'
-          echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
-          echo $ANDROID_HOME/emulator/emulator -list-avds
+          echo "y" | sdkmanager --install 'system-images;android-28;google_apis;x86_64'
+          echo "no" | avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
+          echo emulator -list-avds
           echo "Starting emulator"
-          nohup $ANDROID_HOME/emulator/emulator -avd test_device -no-snapshot > /dev/null 2>&1 &
-          $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
-          $ANDROID_HOME/platform-tools/adb devices
+          nohup emulator -avd test_device -no-snapshot > /dev/null 2>&1 &
+          adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
+          adb devices
           echo "Emulator started"
       - run: |
           rm -rf node_modules
