@@ -61,11 +61,11 @@ jobs:
       - checkout
       - run: npm install -g react-native-cli
       - run: |
-          brew cask install adoptopenjdk/openjdk/adoptopenjdk8
+          brew install --cask adoptopenjdk/openjdk/adoptopenjdk8
           java -version
-          brew install gradle
-          brew install android-sdk
-          brew install android-platform-tools
+          brew install --cask gradle
+          brew install --cask android-sdk
+          brew install --cask android-platform-tools
       - run: |
           java -version
           echo "y" | sdkmanager --install 'system-images;android-28;google_apis;x86_64'
