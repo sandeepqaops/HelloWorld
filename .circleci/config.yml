@@ -75,7 +75,7 @@ jobs:
           emulator -list-avds
       - run:
           name: Starting emulator in background
-          command: emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on > /dev/null &>
+          command: emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on
           background: true
       - run: |
           adb wait-for-device
