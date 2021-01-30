@@ -32,9 +32,10 @@ jobs:
       - run: npm install --save-dev chai
       - run: |
           cd ios && pod install --repo-update && cd ..
-      - run: |
-          npm start --reset-cache &> metro-ios.log &
-          sleep 30
+      - run:
+          name: Starting metro in background
+          command: npm start --reset-cache &> metro-ios.log
+          background: true
       - run: |
           react-native run-ios --simulator=$DEVICE_NAME &> build-ios.log
           sleep 30
@@ -72,8 +73,11 @@ jobs:
           echo "y" | sdkmanager --install 'system-images;android-28;google_apis;x86_64'
           echo "no" | avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
           emulator -list-avds
-          echo "Starting emulator"
-          emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on > /dev/null 2>&1 &
+      - run:
+          name: Starting emulator in background
+          command: emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on > /dev/null &>
+          background: true
+      - run: |
           adb wait-for-device
           adb devices
           echo "Emulator started"
@@ -84,9 +88,10 @@ jobs:
       - run: npm install --save-dev
       - run: npm audit fix
       - run: npm install --save-dev chai
-      - run: |
-          npm start --reset-cache &> metro-android.log &
-          sleep 30
+      - run:
+          name: Starting metro in background
+          command: npm start --reset-cache &> metro-android.log
+          background: true
       - run: |
           react-native run-android &> build-android.log
           sleep 30
