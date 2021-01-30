@@ -73,11 +73,9 @@ jobs:
           echo "y" | sdkmanager --install 'system-images;android-28;google_apis;x86_64'
           echo "no" | avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
           emulator -list-avds
-          export ANDROID_SDK_HOME=/Users/distiller/Library/Android/sdk
-          export ANDROID_HOME=$ANDROID_SDK_HOME
       - run:
           name: Starting emulator in background
-          command: emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on
+          command: export ANDROID_SDK_HOME=/Users/distiller/Library/Android/sdk && emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on
           background: true
       - run: |
           adb wait-for-device
