@@ -61,14 +61,14 @@ jobs:
       - checkout
       - run: npm install -g react-native-cli
       - run: |
+          brew install adoptopenjdk8
           brew install gradle
           brew install android-sdk
           export GRADLE_HOME=/usr/local/opt/gradle
           export ANDROID_HOME=/usr/local/opt/android-sdk
           export PATH=$GRADLE_HOME/bin:$PATH
           export PATH=$ANDROID_HOME/tools:$PATH
-          export PATH=$ANDROID_HOME/platform-tools:$PATH    
-          echo "y" | android update sdk --no-ui
+          export PATH=$ANDROID_HOME/platform-tools:$PATH
           echo "Android Home: $ANDROID_HOME"
           adb --version
           exit 1
