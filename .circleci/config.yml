@@ -67,7 +67,11 @@ jobs:
           brew install android-sdk
           brew install android-platform-tools
       - run: |
+          which java
+          echo $PATH
+          echo $JAVA_HOME
           java -version
+          export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.xml.bind'
           echo "y" | sdkmanager --install 'system-images;android-28;google_apis;x86_64'
           echo "no" | avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
           echo emulator -list-avds
