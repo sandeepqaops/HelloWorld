@@ -67,7 +67,7 @@ jobs:
           brew install android-sdk
           brew install android-platform-tools
           brew install --cask intel-haxm
-          brew cask info android-sdk
+          brew info --cask android-sdk
       - run: |
           export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
           export PATH=$JAVA_HOME/bin:$PATH
