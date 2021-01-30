@@ -64,14 +64,6 @@ jobs:
           brew install gradle
           brew install android-sdk
           brew install android-platform-tools
-          export GRADLE_HOME=/usr/local/opt/gradle
-          export ANDROID_HOME=/usr/local/opt/android-sdk
-          export PATH=$GRADLE_HOME/bin:$PATH
-          export PATH=$ANDROID_HOME/tools:$PATH
-          export PATH=$ANDROID_HOME/platform-tools:$PATH
-          echo "Android Home: $ANDROID_HOME"
-          adb --version
-          exit 1
       - run: |
           echo "y" | sdkmanager --install 'system-images;android-28;google_apis;x86_64'
           echo "no" | avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
