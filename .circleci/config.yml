@@ -61,7 +61,6 @@ jobs:
       - checkout
       - run: npm install -g react-native-cli
       - run: |
-          brew install adoptopenjdk8
           brew install gradle
           brew install android-sdk
           export GRADLE_HOME=/usr/local/opt/gradle
