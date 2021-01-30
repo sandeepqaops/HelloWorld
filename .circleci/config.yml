@@ -61,6 +61,7 @@ jobs:
       - checkout
       - run: npm install -g react-native-cli
       - run: |
+          brew --version
           brew install android-studio --cask
           echo "Android Home: $ANDROID_HOME"
           exit 1
