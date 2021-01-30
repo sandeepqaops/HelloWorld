@@ -61,9 +61,7 @@ jobs:
       - checkout
       - run: npm install -g react-native-cli
       - run: |
-          brew install --cask adoptopenjdk/openjdk/adoptopenjdk8
-          java -version
-          brew install gradle
+          brew install --cask homebrew/cask-versions/adoptopenjdk8
           brew install android-sdk
           brew install android-platform-tools
       - run: |
