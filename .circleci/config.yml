@@ -69,13 +69,11 @@ jobs:
       - run: |
           export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
           export PATH=$JAVA_HOME/bin:$PATH
-          java -version
-          touch ~/.android/repositories.cfg
           echo "y" | sdkmanager --install 'system-images;android-28;google_apis;x86_64'
           echo "no" | avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
           emulator -list-avds
           echo "Starting emulator"
-          nohup emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on > /dev/null 2>&1 &
+          emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on > /dev/null 2>&1 &
           adb wait-for-device
           adb devices
           echo "Emulator started"
