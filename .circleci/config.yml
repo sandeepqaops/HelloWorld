@@ -65,6 +65,7 @@ jobs:
           brew install gradle
           brew install android-sdk
           brew install android-platform-tools
+          brew install --cask intel-haxm
       - run: |
           export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
           export PATH=$JAVA_HOME/bin:$PATH
@@ -73,7 +74,8 @@ jobs:
           echo "no" | avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
           echo emulator -list-avds
           echo "Starting emulator"
-          nohup emulator -avd test_device -no-snapshot > /dev/null 2>&1 &
+          nohup emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on > /dev/null 2>&1 &
+          adb wait-for-device
           adb devices
           echo "Emulator started"
       - run: |
