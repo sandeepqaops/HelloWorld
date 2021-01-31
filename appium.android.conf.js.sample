@@ -11,5 +11,6 @@ const capabilities = {
     uiautomator2ServerLaunchTimeout: 300000,
     uiautomator2ServerInstallTimeout: 300000,
     uiautomator2ServerReadTimeout: 300000,
+    androidInstallTimeout: 300000,
 };
 exports.capabilities = capabilities;
