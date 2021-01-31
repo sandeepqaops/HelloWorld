@@ -95,6 +95,7 @@ jobs:
           command: npm start --reset-cache &> metro-android.log
           background: true
       - run: |
+          export ANDROID_SDK_ROOT=/usr/local/Caskroom/android-sdk/4333796
           react-native run-android &> build-android.log
           sleep 30
           npm run e2e-test:android -- Sanity &> test-execution-console-android.log
