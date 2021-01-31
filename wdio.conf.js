@@ -81,14 +81,14 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 120000,
+    waitforTimeout: 300000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
+    connectionRetryTimeout: 300000,
     //
     // Default request retries count
-    connectionRetryCount: 10,
+    connectionRetryCount: 50,
     //
     // Test runner services
     // Services take over a specific job you don't want to take care of. They enhance
