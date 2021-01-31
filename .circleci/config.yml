@@ -75,11 +75,9 @@ jobs:
           emulator -list-avds
           ls -la /Users/$USER/.android/avd
           sdkmanager "platform-tools" "platforms;android-28"
-          ls -la /usr/local/Caskroom/android-sdk/4333796
-          ls -la /usr/local/Caskroom/android-sdk
       - run:
           name: Starting emulator in background
-          command: export ANDROID_SDK_ROOT=/usr/local/Caskroom/android-sdk/4333796 && export ANDROID_AVD_HOME=/Users/$USER/.android/avd && export ANDROID_HOME=$ANDROID_SDK_ROOT && emulator -avd test_device -skin 1080x1920 -memory 1024 -netfast -no-audio -no-snapshot -accel on
+          command: export ANDROID_SDK_ROOT=/usr/local/Caskroom/android-sdk/4333796 && export ANDROID_AVD_HOME=/Users/$USER/.android/avd && export ANDROID_HOME=$ANDROID_SDK_ROOT && $ANDROID_HOME/emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on
           background: true
       - run: |
           adb wait-for-device
