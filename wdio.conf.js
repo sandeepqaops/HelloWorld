@@ -7,7 +7,9 @@ exports.config = {
     //
     // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
     // on a remote machine).
-    runner: 'local',
+    runner: 'beta-hub.lambdatest.com/wd/hub',
+    user: 'kdinesh',
+    key:  'sH4zu5sJ91QyMjvsUyqQBaEyiKNEJVHQolmgrIH9kkRpUQuEoe',
     //
     // ==================
     // Specify Test Files
@@ -94,7 +96,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['appium'],
+    services: ['appium', 'lambdatest', {tunnel: true}],
     port: 4723,
 
     // Framework you want to run your specs with.
