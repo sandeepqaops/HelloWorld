@@ -10,8 +10,9 @@ exports.config = {
     runner: 'local',
     user: 'kdinesh',
     key:  'sH4zu5sJ91QyMjvsUyqQBaEyiKNEJVHQolmgrIH9kkRpUQuEoe',
-    seleniumHost: 'beta-hub.lambdatest.com',
-    seleniumPort: 80,
+    path: "/wd/hub",
+    hostname: "beta-hub.lambdatest.com",
+    port: 80,
     //
     // ==================
     // Specify Test Files
@@ -98,7 +99,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['appium', 'lambdatest', {tunnel: true}],
+    services: ['appium'],
     port: 4723,
 
     // Framework you want to run your specs with.
