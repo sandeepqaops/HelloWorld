@@ -7,9 +7,11 @@ exports.config = {
     //
     // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
     // on a remote machine).
-    runner: 'beta-hub.lambdatest.com/wd/hub',
+    runner: 'local',
     user: 'kdinesh',
     key:  'sH4zu5sJ91QyMjvsUyqQBaEyiKNEJVHQolmgrIH9kkRpUQuEoe',
+    seleniumHost: 'beta-hub.lambdatest.com',
+    seleniumPort: 80,
     //
     // ==================
     // Specify Test Files
