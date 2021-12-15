@@ -18,12 +18,12 @@ fi
 echo "Running $PLATFORM E2E Tests"
 if [[ $PLATFORM == "android" ]]
 then
-    DEVICE_ID=`adb devices | grep -v "List"  | awk '{print $1}'`
-    echo "Device Name Identified: $DEVICE_ID"
-    sed -i -e "s/{EMULATOR-NAME}/$DEVICE_ID/g" appium.android.conf.js
-    ANDROID_VERSION=`adb shell getprop ro.build.version.release`
-    echo "Device Version Identified: $ANDROID_VERSION"
-    sed -i -e "s/{EMULATOR-PLATFORM-VERSION}/$ANDROID_VERSION/g" appium.android.conf.js
+    #DEVICE_ID=`adb devices | grep -v "List"  | awk '{print $1}'`
+    #echo "Device Name Identified: $DEVICE_ID"
+    #sed -i -e "s/{EMULATOR-NAME}/$DEVICE_ID/g" appium.android.conf.js
+    #ANDROID_VERSION=`adb shell getprop ro.build.version.release`
+    #echo "Device Version Identified: $ANDROID_VERSION"
+    #sed -i -e "s/{EMULATOR-PLATFORM-VERSION}/$ANDROID_VERSION/g" appium.android.conf.js
     cp appium.android.conf.js appium.device.conf.js
 else
     cp appium.ios.conf.js appium.device.conf.js
